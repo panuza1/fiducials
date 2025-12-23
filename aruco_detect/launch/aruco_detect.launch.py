@@ -6,11 +6,11 @@ from launch.substitutions import LaunchConfiguration
 def generate_launch_description():
     return LaunchDescription([
         # Declare launch arguments
-        DeclareLaunchArgument('camera', default_value='/camera', description='Namespace for camera input'),
-        DeclareLaunchArgument('image', default_value='image_raw', description='Camera topic name'),
-        DeclareLaunchArgument('transport', default_value='compressed', description='Image transport method'),
+        DeclareLaunchArgument('camera', default_value='/camera/camera/color', description='Namespace for camera input'),  # edit 
+        DeclareLaunchArgument('image', default_value='image_raw', description='Camera topic name'), # edit 
+        DeclareLaunchArgument('transport', default_value='raw', description='Image transport method'),   # edit 
         DeclareLaunchArgument('fiducial_len', default_value='0.14', description='Fiducial length in meters'),
-        DeclareLaunchArgument('dictionary', default_value='7', description='ArUco dictionary ID'),
+        DeclareLaunchArgument('dictionary', default_value='3', description='ArUco dictionary ID'),     # edit
         DeclareLaunchArgument('do_pose_estimation', default_value='true', description='Enable pose estimation'),
         DeclareLaunchArgument('vis_msgs', default_value='false', description='Publish vision_msgs for pose estimation'),
         DeclareLaunchArgument('ignore_fiducials', default_value='', description='Ignore specific fiducials'),
@@ -35,8 +35,8 @@ def generate_launch_description():
                 {'verbose': LaunchConfiguration('verbose')},
             ],
             remappings=[
-                ('camera/compressed', [LaunchConfiguration('camera'), '/', LaunchConfiguration('image'), '/', LaunchConfiguration('transport')]),
-                ('camera_info', [LaunchConfiguration('camera'), '/camera_info']),
+                ('camera/image_raw', [LaunchConfiguration('camera'), '/', LaunchConfiguration('image')]),    # edit 
+                ('camera_info', [LaunchConfiguration('camera'), '/camera_info']),   
             ],
             arguments=['--ros-args', '--log-level', 'warn']
         ),
