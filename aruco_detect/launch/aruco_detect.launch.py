@@ -8,9 +8,9 @@ def generate_launch_description():
         # Declare launch arguments
         DeclareLaunchArgument('camera', default_value='/camera/camera/color', description='Namespace for camera input'),  # edit 
         DeclareLaunchArgument('image', default_value='image_raw', description='Camera topic name'), # edit 
-        DeclareLaunchArgument('transport', default_value='raw', description='Image transport method'),   # edit 
+        DeclareLaunchArgument('transport', default_value='raw', description='Image transport method'),   # edit
         DeclareLaunchArgument('fiducial_len', default_value='0.14', description='Fiducial length in meters'),
-        DeclareLaunchArgument('dictionary', default_value='3', description='ArUco dictionary ID'),     # edit
+        DeclareLaunchArgument('dictionary', default_value='3', description='ArUco dictionary ID'),     # edit   
         DeclareLaunchArgument('do_pose_estimation', default_value='true', description='Enable pose estimation'),
         DeclareLaunchArgument('vis_msgs', default_value='false', description='Publish vision_msgs for pose estimation'),
         DeclareLaunchArgument('ignore_fiducials', default_value='', description='Ignore specific fiducials'),

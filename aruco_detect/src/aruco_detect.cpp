@@ -42,7 +42,7 @@
 #include <tf2_geometry_msgs/tf2_geometry_msgs.hpp>
 #include <visualization_msgs/msg/marker.hpp>
 #include <image_transport/image_transport.hpp>
-#include <cv_bridge/cv_bridge.h> // this error 
+#include <cv_bridge/cv_bridge.h>
 #include <sensor_msgs/image_encodings.hpp>
 #include <std_srvs/srv/set_bool.hpp>
 #include <std_msgs/msg/string.hpp>
@@ -301,7 +301,7 @@ void FiducialsNode::estimatePoseSingleMarkers(float markerLength,
 void FiducialsNode::ignoreCallback(const std_msgs::msg::String& msg)
 {
     ignoreIds.clear();
-    // pnh.setPa("ignore_fiducials", msg.data);ram
+    // pnh.setParam("ignore_fiducials", msg.data);
     this->set_parameter(rclcpp::Parameter("ignore_fiducials", msg.data));
 
     handleIgnoreString(msg.data);
@@ -690,10 +690,7 @@ FiducialsNode::FiducialsNode() : Node("aruco_detect"), broadcaster(this)
     image_pub = image_transport::create_publisher(this, "fiducial_images");
 
 
-    dictionary = cv::makePtr<cv::aruco::Dictionary>(
-        aruco::getPredefinedDictionary(dicno)
-    );
-    // dictionary = aruco::getPredefinedDictionary(dicno);
+    dictionary = aruco::getPredefinedDictionary(dicno);
 
     vertices_sub = this->create_subscription<fiducial_msgs::msg::FiducialArray>(
         "fiducial_vertices", 10, std::bind(&FiducialsNode::poseEstimateCallback, this, std::placeholders::_1));
@@ -776,11 +773,11 @@ void FiducialsNode::init(){
     this->get_parameter("image_transport", transport);
     auto transport_hints = std::make_shared<image_transport::TransportHints>(this, transport);        // Define subscription options
     rclcpp::SubscriptionOptions options;
-    rclcpp::QoS qos_profile = rclcpp::QoS(rclcpp::KeepLast(10)).reliable(); 
+    rclcpp::QoS qos_profile = rclcpp::QoS(rclcpp::KeepLast(10)).reliable();
     // Use image_transport with the specified transport type
     image_transport::ImageTransport it(this->shared_from_this());
     img_sub = it.subscribe(
-        "camera/image_raw",                                    // Base topic       
+        "camera/image_raw",                                    // Base topic
         qos_profile.get_rmw_qos_profile(),                                                    // Queue size
         &FiducialsNode::imageCallback,                         // Member function pointer (fp)
         this,                                                  // Instance pointer (obj)
