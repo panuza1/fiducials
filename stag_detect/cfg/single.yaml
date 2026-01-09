@@ -6,8 +6,8 @@ stag_detect:
     error_correction: 2
 
     # Camera configuration
-    camera_info_topic: camera/camera_info
-    image_topic: camera/image_raw
+    camera_info_topic: /camera/camera/color/camera_info
+    image_topic: /camera/camera/color/image_raw
     is_compressed: false
 
     # Node configuration

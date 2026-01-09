@@ -80,7 +80,7 @@ class FiducialsNode : public rclcpp::Node {
     rclcpp::Subscription<sensor_msgs::msg::CameraInfo>::SharedPtr caminfo_sub;
     rclcpp::Subscription<std_msgs::msg::String>::SharedPtr ignore_sub;
     rclcpp::Subscription<fiducial_msgs::msg::FiducialArray>::SharedPtr vertices_sub;
-
+    
     rclcpp::Publisher<fiducial_msgs::msg::FiducialArray>::SharedPtr vertices_pub;
     rclcpp::Publisher<fiducial_msgs::msg::FiducialTransformArray>::SharedPtr pose_pub_fta;
     rclcpp::Publisher<vision_msgs::msg::Detection2DArray>::SharedPtr pose_pub_d2a;

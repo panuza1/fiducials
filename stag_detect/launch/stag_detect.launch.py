@@ -32,9 +32,9 @@ def generate_launch_description():
         parameters=[
             {'marker_size': LaunchConfiguration('marker_size')},
             {'stag_library': 11},
-            {'image_topic': "/camera/image_raw/compressed"},
+            {'image_topic': "/camera/camera/color/image_raw"},   # edit
             {'is_compressed': True},
-            {'camera_info_topic': "/camera/camera_info"},
+            {'camera_info_topic': "/camera/camera/color/camera_info"},  # edit 
             single_yaml_path  # Load parameters from YAML file
         ],
         remappings=[
